@@ -1,0 +1,38 @@
+<div class="libro-card" [class.out-of-stock]="!libro.inStock">
+
+  <div class="card-header">
+    <span class="category-badge">{{ libro.genero }}</span>
+    <span class="stock-status">{{ libro.inStock | libroStockStatus }}</span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="libro-titulo">{{ libro.titulo }}</h3>
+    <p class="libro-autor">Autor: {{ libro.autor }}</p>
+    <p class="libro-isbn">ISBN: {{ libro.ISBN }}</p>
+    <p class="libro-anio">Año: {{ libro.anio }}</p>
+
+    <div class="libro-info">
+      <small class="created-date">Agregado: {{ libro.createdAt | date:'shortDate' }}</small>
+    </div>
+
+    <div class="card-actions">
+      <button
+        (click)="onViewDetails()"
+        class="btn btn-info"
+        [disabled]="!libro.inStock">
+        Ver Detalles
+      </button>
+
+      <button
+        (click)="onDeleteLibro()"
+        class="btn btn-danger">
+        Eliminar
+      </button>
+        <button
+          (click)="onEditLibro()"
+          class="btn btn-warning">
+          Editar
+        </button>
+    </div>
+  </div>
+</div>

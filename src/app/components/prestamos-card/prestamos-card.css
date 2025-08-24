@@ -1,0 +1,87 @@
+/* Card principal */
+.prestamo-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(41,128,185,0.10);
+  padding: 1.2rem 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.prestamo-card.devuelto {
+  border: 2px solid #27ae60;
+  box-shadow: 0 4px 24px rgba(39,174,96,0.12);
+}
+
+.prestamo-info h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.prestamo-info p {
+  margin: 0.2rem 0;
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.prestamo-info span {
+  font-size: 0.95rem;
+  color: #888;
+}
+
+.estado {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  background: #f5f5f5;
+  color: #888;
+}
+.estado.devuelto {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+.estado.pendiente {
+  background: #fffde7;
+  color: #fbc02d;
+}
+.estado.atrasado {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.prestamo-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.7rem;
+}
+
+.btn {
+  padding: 0.4rem 1rem;
+  border-radius: 7px;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: #1976d2;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #1565c0;
+}
+
+@media (max-width: 600px) {
+  .prestamo-card {
+    padding: 0.7rem 0.5rem;
+  }
+  .prestamo-actions {
+    justify-content: center;
+  }
+}

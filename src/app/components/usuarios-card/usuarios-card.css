@@ -1,0 +1,162 @@
+.usuario-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 1rem;
+  margin: 0.7rem 0;
+  transition: box-shadow 0.2s;
+  max-width: 280px;
+  width: 100%;
+  min-height: 290px;
+  position: relative;
+}
+
+.usuario-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+
+.usuario-foto {
+  margin-bottom: 1rem;
+}
+
+.usuario-foto img {
+  border-radius: 50%;
+  border: 2px solid #1222b6;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+  background: #f5f5f5;
+}
+
+.usuario-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.usuario-nombre {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.usuario-email {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.usuario-tipo {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.usuario-status {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.5rem;
+  background: #f5f5f5;
+  color: #888;
+}
+
+.usuario-status.activo {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+.usuario-status.suspendido {
+  background: #fffde7;
+  color: #fbc02d;
+}
+.usuario-status.egresado {
+  background: #e3e3e3;
+  color: #616161;
+}
+.usuario-fechas {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.usuario-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: auto;
+  position: absolute;
+  left: 0%;
+  bottom: 1rem;
+  transform: translateX(-4%);
+  padding: 0;
+}
+
+.btn {
+  padding: 0.35rem 0.8rem;
+  border-radius: 7px;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-info {
+  background: #1976d2;
+  color: #fff;
+}
+
+.btn-info:hover {
+  background: #1565c0;
+}
+
+.btn-warning {
+  background: #ffb300;
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background: #ffa000;
+}
+
+/* Responsive: Cards en grid */
+@media (min-width: 600px) {
+  .usuario-card {
+    flex-direction: column;
+    align-items: center;
+    max-width: 280px;
+    min-width: 220px;
+    position: relative;
+  }
+  .usuario-foto {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .usuario-info {
+    text-align: center;
+    flex: 1;
+    margin-bottom: 0;
+  }
+  .usuario-actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+    min-width: unset;
+    gap: 0.7rem;
+  }
+}

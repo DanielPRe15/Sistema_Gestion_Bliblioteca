@@ -1,0 +1,25 @@
+
+<div class="prestamo-card" [class.devuelto]="isDevuelto(prestamo)">
+  <div class="prestamo-info">
+    <h4>Préstamo #{{ prestamo.id }}</h4>
+    <p><strong>Libro:</strong> {{ prestamo.libroTitulo }}</p>
+    <p><strong>Usuario:</strong> {{ prestamo.usuarioNombre }}</p>
+    <p><strong>Fecha de préstamo:</strong> {{ prestamo.fechaPrestamo | date:'shortDate' }}</p>
+    <p *ngIf="prestamo.fechaDevolucion">
+      <strong>Fecha de devolución:</strong> {{ prestamo.fechaDevolucion | date:'shortDate' }}
+      <br>
+      <span>{{ prestamo.fechaDevolucion | diasRestantes }}</span>
+      <br>
+      <span>{{ prestamo.fechaDevolucion | multaRetraso:2 }}</span>
+    </p>
+    <p *ngIf="!prestamo.fechaDevolucion">
+      <strong>Fecha de devolución:</strong> <em>Pendiente</em>
+      <br>
+      <span>{{ 'Sin multa' }}</span>
+    </p>
+<span class="estado devuelto" *ngIf="isDevuelto(prestamo)">Devuelto</span>
+  </div>
+  <div class="prestamo-actions">
+    <button class="btn btn-warning" (click)="onRenovarPrestamo()">Renovar</button>
+  </div>
+</div>

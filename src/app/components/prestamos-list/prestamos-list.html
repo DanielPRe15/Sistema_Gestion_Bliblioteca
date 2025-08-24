@@ -1,0 +1,59 @@
+<div class="prestamos-list-container">
+
+  <!-- Botón para agregar préstamo -->
+  <div class="prestamos-actions">
+    <button class="btn btn-success" (click)="onAddPrestamo()">Agregar préstamo</button>
+  </div>
+
+  <!-- Formulario para agregar préstamo -->
+  <form *ngIf="PrestamoNuevo" [formGroup]="prestamoForm" (ngSubmit)="onSubmitPrestamo()" class="prestamo-form">
+    <div class="form-group">
+    <label for="libroId">Libro:</label>
+    <select id="libroId" formControlName="libroId" [class.invalid]="isFildInvalid('libroId')">
+  <option [ngValue]="null">Seleccione un libro</option>
+  <option *ngFor="let libro of libros" [ngValue]="libro.id">{{ libro.titulo }}</option>
+    </select>
+    <div *ngIf="isFildInvalid('libroId')" class="error-messages">
+        <span *ngIf="hasError('libroId','required')">El libro es obligatorio.</span>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label for="usuarioId">Usuario:</label>
+    <select id="usuarioId" formControlName="usuarioId" [class.invalid]="isFildInvalid('usuarioId')">
+  <option [ngValue]="null">Seleccione un usuario</option>
+  <option *ngFor="let usuario of usuarios" [ngValue]="usuario.id">{{ usuario.nombre }}</option>
+    </select>
+    <div *ngIf="isFildInvalid('usuarioId')" class="error-messages">
+        <span *ngIf="hasError('usuarioId','required')">El usuario es obligatorio.</span>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fechaPrestamo">Fecha de préstamo:</label>
+      <input id="fechaPrestamo" type="date" formControlName="fechaPrestamo" [class.invalid]="isFildInvalid('fechaPrestamo')">
+      <div *ngIf="isFildInvalid('fechaPrestamo')" class="error-messages">
+        <span *ngIf="hasError('fechaPrestamo','required')">La fecha es obligatoria.</span>
+      </div>
+      <br>
+      <label for="fechaDevolucion">Fecha de devolución:</label>
+      <input id="fechaDevolucion" type="date" formControlName="fechaDevolucion" [class.invalid]="isFildInvalid('fechaDevolucion')">
+      <div *ngIf="isFildInvalid('fechaDevolucion')" class="error-messages">
+        <span *ngIf="hasError('fechaDevolucion','required')">La fecha es obligatoria.</span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="prestamoForm.invalid">Guardar</button>
+      <button type="button" (click)="cancelarNuevoPrestamo()">Cancelar</button>
+    </div>
+  </form>
+
+  <!-- Listado de préstamos -->
+  <div class="prestamos-grid">
+    <app-prestamos-card
+  *ngFor="let prestamo of prestamos"
+  [prestamo]="prestamo"
+  (renovarPrestamo)="onRenovarPrestamo($event)">
+</app-prestamos-card>
+</div>

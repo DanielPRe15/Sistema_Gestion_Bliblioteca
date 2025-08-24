@@ -1,0 +1,86 @@
+<div class="usuarios-list-container">
+
+  <!-- Buscador -->
+  <div class="usuarios-filtros">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="searchUsuarios()"
+      placeholder="Buscar usuario por nombre"
+    >
+    <button class="btn btn-success" (click)="onAddUsuario()">Agregar usuario</button>
+  </div>
+
+
+  <!-- Lista de usuarios -->
+  <div class="usuarios-grid">
+    <app-usuarios-card
+      *ngFor="let usuario of usuarios"
+      [usuario]="usuario"
+      (viewDetails)="onViewDetails($event)">
+    </app-usuarios-card>
+  </div>
+
+    <!-- Formulario para agregar usuario -->
+  <form *ngIf="UsuarioNuevo" [formGroup]="usuarioForm" (ngSubmit)="onSubmitUsuario()" class="usuario-form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input 
+        id="nombre"
+        formControlName="nombre"
+        placeholder="Ingrese el nombre"
+        [class.invalid]="isFildInvalid('nombre')"
+      >
+      <div *ngIf="isFildInvalid('nombre')" class="error-messages">
+        <span *ngIf="hasError('nombre','required')">El nombre es obligatorio.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input 
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Ingrese el email"
+        [class.invalid]="isFildInvalid('email')"
+      >
+      <div *ngIf="isFildInvalid('email')" class="error-messages">
+        <span *ngIf="hasError('email','required')">El email es obligatorio.</span>
+        <span *ngIf="hasError('email','email')">Formato de email inválido.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="foto">Foto (URL):</label>
+      <input 
+        id="foto"
+        formControlName="foto"
+        placeholder="URL de foto"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="type">Tipo:</label>
+      <select id="type" formControlName="type">
+        <option value="estudiante">Estudiante</option>
+        <option value="profesor">Profesor</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Estado:</label>
+      <select id="status" formControlName="status">
+        <option value="activo">Activo</option>
+        <option value="suspendido">Suspendido</option>
+        <option value="egresado">Egresado</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="usuarioForm.invalid">Guardar</button>
+      <button type="button" (click)="cancelarNuevoUsuario()">Cancelar</button>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="usuario-card">
+  <div class="usuario-foto">
+    <img [src]="usuario.foto || 'https://ui-avatars.com/api/?name=' + usuario.nombre" alt="Foto de usuario" width="80" height="80">
+  </div>
+  <div class="usuario-info">
+    <h3 class="usuario-nombre">{{ usuario.nombre }}</h3>
+    <p class="usuario-email">{{ usuario.email }}</p>
+    <span class="usuario-tipo">{{ usuario.type | titlecase }}</span>
+    <span 
+      class="usuario-status"
+      [ngClass]="{
+        'activo': usuario.status === 'activo',
+        'suspendido': usuario.status === 'suspendido',
+        'egresado': usuario.status === 'egresado'
+      }"
+    >
+      {{ usuario.status | titlecase }}
+    </span>
+    <div class="usuario-fechas">
+      <small>Registrado: {{ usuario.createdAt | date:'shortDate' }}</small>
+    </div>
+  </div>
+  <div class="usuario-actions">
+    <button class="btn btn-info" (click)="onViewDetails()">Ver Detalles</button>
+    <button class="btn btn-warning" (click)="onViewHistoryPrestamo()">Historial de Préstamos</button>
+  </div>
+
+  </div>

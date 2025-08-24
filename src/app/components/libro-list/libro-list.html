@@ -1,0 +1,47 @@
+<div class="libro-list-container">
+
+  <!-- Filtros y búsqueda -->
+  <div class="libro-filtros">
+    <select [(ngModel)]="selectedGenero" (change)="onGeneroChange()">
+      <option value="all">Todos los géneros</option>
+      <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+    </select>
+
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange()"
+      placeholder="Buscar por título o autor"
+    >
+  </div>
+
+  <!-- Botón para agregar libro -->
+  <button class="btn btn-success" (click)="onAddLibro()">Agregar libro</button>
+
+  <!-- Formulario para agregar libro -->
+  <app-libro-form
+    *ngIf="libroNuevo"
+    [libro]="libroNuevo"
+    (guardar)="guardarNuevoLibro($event)"
+    (cancelar)="cancelarNuevoLibro()">
+  </app-libro-form>
+
+  <!-- Formulario para editar libro -->
+  <app-libro-form
+    *ngIf="libroEditando"
+    [libro]="libroEditando"
+    (guardar)="guardarEdicion($event)"
+    (cancelar)="cancelarEdicion()">
+  </app-libro-form>
+
+  <!-- Lista de libros -->
+  <div class="libros-grid">
+    <app-libro-card
+      *ngFor="let libro of filteredLibros"
+      [libro]="libro"
+      (deleteLibro)="onDeleteLibro($event)"
+      (viewDetails)="onViewDetails($event)"
+      (editLibro)="onEditLibro($event)">
+    </app-libro-card>
+  </div>
+</div>

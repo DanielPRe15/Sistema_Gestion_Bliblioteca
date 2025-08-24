@@ -1,0 +1,23 @@
+<form [formGroup]="libroForm" (ngSubmit)="onSubmit()">
+  <input formControlName="titulo" placeholder="Título">
+  <div *ngIf="isFieldInvalid('titulo')" class="error">El título es obligatorio.</div>
+
+  <input formControlName="autor" placeholder="Autor">
+  <div *ngIf="isFieldInvalid('autor')" class="error">El autor es obligatorio.</div>
+
+  <input formControlName="ISBN" placeholder="ISBN">
+  <div *ngIf="isFieldInvalid('ISBN')" class="error">El ISBN es obligatorio.</div>
+
+  <input formControlName="anio" type="number" placeholder="Año">
+  <div *ngIf="isFieldInvalid('anio')" class="error">El año es obligatorio y debe ser positivo.</div>
+
+  <input formControlName="genero" placeholder="Género">
+  <div *ngIf="isFieldInvalid('genero')" class="error">El género es obligatorio.</div>
+
+  <label>
+    <input type="checkbox" formControlName="inStock"> Disponible
+  </label>
+
+  <button type="submit">Guardar</button>
+  <button type="button" (click)="onCancel()">Cancelar</button>
+</form>
